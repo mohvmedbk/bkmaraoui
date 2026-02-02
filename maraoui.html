@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>واش عارفة شحال كانبغيك ازين ديالي🌝؟</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI', Tahoma, sans-serif;
+  background:linear-gradient(135deg,#ffe5ec,#ffc2d1);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+  color:#5a1a2e;
+}
+
+/* Cards */
+.card{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  width:90%;
+  max-width:420px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+
+h1{margin-bottom:20px}
+
+.btn{
+  display:block;
+  width:100%;
+  margin:12px 0;
+  padding:14px;
+  font-size:1rem;
+  border:none;
+  border-radius:999px;
+  background:#c9184a;
+  color:white;
+  cursor:pointer;
+}
+
+.btn:hover{transform:scale(1.03)}
+
+/* Celebration page */
+.celebration{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.celebration-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover; /* makes the video cover full screen */
+  z-index:0;
+}
+
+.celebration-text{
+  position:relative;
+  z-index:2;
+  background:rgba(255,255,255,0.8);
+  padding:40px;
+  border-radius:25px;
+  font-size:2.5rem;
+  color:#720026;
+  box-shadow:0 20px 40px rgba(0,0,0,.3);
+  line-height:1.6;
+}
+
+/* Hearts */
+.heart{
+  position:absolute;
+  bottom:-20px;
+  font-size:22px;
+  animation:float 4s linear infinite;
+  opacity:.8;
+}
+@keyframes float{
+  from{transform:translateY(0)}
+  to{transform:translateY(-120vh)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- QUIZ -->
+<div class="card" id="quiz">
+  <h1>🧠 واش عارفة شحال كانبغيك ازين ديالي🌝؟</h1>
+  <button class="btn" onclick="answer1()">1) شوية🌝</button>
+  <button class="btn" onclick="answer2()">2) بزاف🌝</button>
+  <button class="btn" onclick="correct()">3) لهلا يوريك قداش🌝</button>
+</div>
+
+<!-- ANSWER 1 -->
+<div class="card" id="a1" style="display:none;">
+  <h2>اشمن اشمن ... رجعي فحالك🌝</h2>
+  <button class="btn" onclick="retry()">فكري مزيان ازوينة🌝</button>
+</div>
+
+<!-- ANSWER 2 -->
+<div class="card" id="a2" style="display:none;">
+  <h2>قربتي ازوينة🌝</h2>
+  <button class="btn" onclick="retry()">فكري مزيان ازوينة🌝</button>
+</div>
+
+<!-- CELEBRATION WITH VIDEO -->
+<div class="celebration" id="celebration">
+  <video class="celebration-bg" autoplay muted loop playsinline>
+    <source src="vid.mp4" type="video/mp4">
+  </video>
+  <div class="celebration-text">
+    تماما أزين ديالي🌝<br>
+    يلاه اراي شي بوسة🌝
+  </div>
+</div>
+
+<script>
+function hideAll(){
+  document.getElementById('quiz').style.display='none';
+  document.getElementById('a1').style.display='none';
+  document.getElementById('a2').style.display='none';
+  document.getElementById('celebration').style.display='none';
+}
+
+// اختيار 1
+function answer1(){
+  hideAll();
+  document.getElementById('a1').style.display='block';
+}
+
+// اختيار 2
+function answer2(){
+  hideAll();
+  document.getElementById('a2').style.display='block';
+}
+
+// رجوع
+function retry(){
+  hideAll();
+  document.getElementById('quiz').style.display='block';
+}
+
+// اختيار 3
+function correct(){
+  hideAll();
+  const celebration=document.getElementById('celebration');
+  celebration.style.display='flex';
+  hearts();
+}
+
+// Hearts floating
+function hearts(){
+  for(let i=0;i<50;i++){
+    const h=document.createElement('div');
+    h.className='heart';
+    h.innerText='🌝';
+    h.style.left=Math.random()*100+'%';
+    h.style.animationDuration=(3+Math.random()*3)+'s';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  }
+  // Keep generating new hearts every second
+  setInterval(()=>{
+    const h=document.createElement('div');
+    h.className='heart';
+    h.innerText='🌝';
+    h.style.left=Math.random()*100+'%';
+    h.style.animationDuration=(3+Math.random()*3)+'s';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },1000);
+}
+</script>
+
+</body>
+</html>
